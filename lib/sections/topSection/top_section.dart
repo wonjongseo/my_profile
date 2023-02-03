@@ -5,8 +5,20 @@ import 'package:programmer_wonjongseo/sections/topSection/components/menu.dart';
 import 'package:programmer_wonjongseo/sections/topSection/components/person_pic.dart';
 
 class TopSection extends StatelessWidget {
-  const TopSection({super.key});
-
+  const TopSection(
+      {super.key,
+      required this.scrollController,
+      required this.abour,
+      required this.services,
+      required this.testimonial,
+      required this.contact,
+      required this.portofolio});
+  final ScrollController scrollController;
+  final GlobalKey abour;
+  final GlobalKey services;
+  final GlobalKey portofolio;
+  final GlobalKey testimonial;
+  final GlobalKey contact;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -31,9 +43,15 @@ class TopSection extends StatelessWidget {
               right: 0,
               child: PersonPic(),
             ),
-            const Positioned(
+            Positioned(
               bottom: 0,
-              child: Menu(),
+              child: Menu(
+                  scrollController: scrollController,
+                  services: services,
+                  portofolio: portofolio,
+                  abour: abour,
+                  testimonial: testimonial,
+                  contact: contact),
             )
           ],
         ),

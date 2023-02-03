@@ -5,14 +5,15 @@ import 'package:programmer_wonjongseo/models/Feedback.dart';
 import 'package:programmer_wonjongseo/sections/feedback/components/feedback_card.dart';
 
 class FeedbackSection extends StatelessWidget {
-  const FeedbackSection({super.key});
-
+  const FeedbackSection({super.key, required this.globalKey});
+  final GlobalKey globalKey;
   @override
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints(maxWidth: 1100),
       padding: const EdgeInsets.symmetric(vertical: kDefaultPadding * 2.5),
       child: Column(
+        key: globalKey,
         children: [
           const SectionTitle(
             title: 'Feedback Received',

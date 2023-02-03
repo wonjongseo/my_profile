@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:programmer_wonjongseo/constants.dart';
 import 'package:programmer_wonjongseo/models/Service.dart';
 
@@ -20,7 +21,34 @@ class _ServiceCardState extends State<ServiceCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Get.dialog(AlertDialog(
+          backgroundColor: services[widget.index].color,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(services[widget.index].title),
+              Image.asset(
+                services[widget.index].image,
+                fit: BoxFit.fill,
+              )
+            ],
+          ),
+          content: Container(
+            height: services[widget.index].language.length * 50,
+            child: Column(
+              children: List.generate(
+                services[widget.index].language.length,
+                (index) => ListTile(
+                  title: Text(
+                    services[widget.index].language[index],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ));
+      },
       onHover: (value) {
         setState(() {
           isHover = value;

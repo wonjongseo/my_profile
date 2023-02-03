@@ -7,8 +7,8 @@ import 'package:programmer_wonjongseo/models/RecentWork.dart';
 import 'package:programmer_wonjongseo/sections/recent_work/components/recent_work_card.dart';
 
 class RecentWorkSection extends StatelessWidget {
-  const RecentWorkSection({super.key});
-
+  const RecentWorkSection({super.key, required this.globalKey});
+  final GlobalKey globalKey;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,6 +22,7 @@ class RecentWorkSection extends StatelessWidget {
         ),
       ),
       child: Column(
+        key: globalKey,
         children: [
           Transform.translate(
             offset: const Offset(0, -80),

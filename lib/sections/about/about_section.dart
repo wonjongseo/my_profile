@@ -7,32 +7,37 @@ import 'package:programmer_wonjongseo/sections/about/about_text_with_sign.dart';
 import 'package:programmer_wonjongseo/sections/about/experience_card.dart';
 
 class AboutSection extends StatelessWidget {
-  const AboutSection({super.key});
+  const AboutSection({
+    super.key,
+    required this.abour,
+  });
+  final GlobalKey abour;
 
   @override
   Widget build(BuildContext context) {
+    String aboutMyStory =
+        'BirthDay: 1997/05/27\nName: Won Jongseo\nUniversity: Sejong University';
+    String yearOfExperience = '日本キスコ株式会社 (2022/11/16 ~)';
+    String numOfExp = '01';
     return Container(
       margin: const EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
       constraints: const BoxConstraints(maxWidth: 1110),
       child: Column(
+        key: abour,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               AboutTextWithSign(),
               Expanded(
                 child: AboutSectionText(
-                  text:
-                      'Hello My name is Wonjongseo Nice to meet you, 안녕하세요 제 이름은 원종서입니다. 만나서 반납습니다. おはようございます。私のお名前はウォンジョンソと申します。よろしくお願いいたします。Hello My name is Wonjongseo Nice to meet you, 안녕하세요 제 이름은 원종서입니다. 만나서 반납습니다. おはようございます。私のお名前はウォンジョンソと申します。よろしくお願いいたします。',
+                  text: aboutMyStory,
                 ),
               ),
-              ExperienceCard(
-                numOfExp: '01',
-              ),
+              ExperienceCard(numOfExp: numOfExp),
               Expanded(
                 child: AboutSectionText(
-                  text:
-                      'Hello My name is Wonjongseo Nice to meet you, 안녕하세요 제 이름은 원종서입니다. 만나서 반납습니다. おはようございます。私のお名前はウォンジョンソと申します。よろしくお願いいたします。Hello My name is Wonjongseo Nice to meet you, 안녕하세요 제 이름은 원종서입니다. 만나서 반납습니다. おはようございます。私のお名前はウォンジョンソと申します。よろしくお願いいたします。',
+                  text: yearOfExperience,
                 ),
               ),
             ],

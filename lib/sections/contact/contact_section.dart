@@ -7,8 +7,8 @@ import 'package:programmer_wonjongseo/sections/contact/components/contact_box.da
 import 'package:programmer_wonjongseo/sections/contact/components/socal_card.dart';
 
 class ContactSection extends StatelessWidget {
-  const ContactSection({super.key});
-
+  const ContactSection({super.key, required this.globalKey});
+  final GlobalKey globalKey;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,6 +21,7 @@ class ContactSection extends StatelessWidget {
         ),
       ),
       child: Column(
+        key: globalKey,
         children: [
           SizedBox(height: kDefaultPadding * 2.5),
           SectionTitle(
