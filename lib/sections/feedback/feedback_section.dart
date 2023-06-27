@@ -10,10 +10,10 @@ class FeedbackSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: globalKey,
       constraints: const BoxConstraints(maxWidth: 1100),
       padding: const EdgeInsets.symmetric(vertical: kDefaultPadding * 2.5),
       child: Column(
-        key: globalKey,
         children: [
           const SectionTitle(
             title: 'Feedback Received',

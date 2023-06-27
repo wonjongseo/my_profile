@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:programmer_wonjongseo/constants.dart';
 import 'package:programmer_wonjongseo/models/Service.dart';
@@ -20,31 +22,51 @@ class _ServiceCardState extends State<ServiceCard> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return InkWell(
       onTap: () {
         Get.dialog(AlertDialog(
           backgroundColor: services[widget.index].color,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(services[widget.index].title),
-              Image.asset(
-                services[widget.index].image,
-                fit: BoxFit.fill,
-              )
-            ],
-          ),
-          content: Container(
-            height: services[widget.index].language.length * 50,
+          content: SizedBox(
+            // width: size.height * 0.5,
+            // height: size.height * 0.4,
             child: Column(
-              children: List.generate(
-                services[widget.index].language.length,
-                (index) => ListTile(
-                  title: Text(
-                    services[widget.index].language[index],
-                  ),
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      services[widget.index].title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40,
+                      ),
+                    ),
+                    const SizedBox(width: 60),
+                    Image.asset(
+                      services[widget.index].image,
+                      fit: BoxFit.fill,
+                    )
+                  ],
                 ),
-              ),
+                const SizedBox(height: 30),
+                ...List.generate(
+                  services[widget.index].language.length,
+                  (index) => ListTile(
+                    minLeadingWidth: 100,
+                    title: Text(
+                      services[widget.index].language[index].name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    leading: services[widget.index].language[index].icon,
+                  ),
+                )
+              ],
             ),
           ),
         ));
@@ -93,7 +115,7 @@ class _ServiceCardState extends State<ServiceCard> {
             ),
             Text(
               services[widget.index].title,
-              style: TextStyle(fontSize: 22),
+              style: const TextStyle(fontSize: 22),
             )
           ],
         ),

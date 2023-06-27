@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:programmer_wonjongseo/constants.dart';
-import 'package:programmer_wonjongseo/models/RecentWork.dart';
+import 'package:programmer_wonjongseo/models/Project.dart';
 
 class RecentWorkCard extends StatefulWidget {
   const RecentWorkCard({
@@ -39,19 +39,27 @@ class _RecentWorkCardState extends State<RecentWorkCard> {
         ),
         child: Row(
           children: [
-            Image.asset(recentWorks[widget.index].image),
             Expanded(
+              flex: 1,
+              child: Image.asset(
+                my_projects[widget.index].images[0],
+                height: 500,
+                fit: BoxFit.fill,
+              ),
+            ),
+            Expanded(
+              flex: 2,
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(recentWorks[widget.index].category.toUpperCase()),
+                    Text(my_projects[widget.index].title.toUpperCase()),
                     const SizedBox(height: kDefaultPadding / 2),
                     Text(
-                      recentWorks[widget.index].title,
+                      my_projects[widget.index].title,
                       style: Theme.of(context)
                           .textTheme
                           .headlineSmall!

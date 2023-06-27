@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:programmer_wonjongseo/constants.dart';
 
 class Menu extends StatefulWidget {
-  const Menu(
-      {super.key,
-      required this.scrollController,
-      required this.abour,
-      required this.services,
-      required this.testimonial,
-      required this.contact,
-      required this.portofolio});
+  Menu({
+    super.key,
+    required this.scrollController,
+    required this.abour,
+    required this.stacks,
+    required this.testimonial,
+    required this.contact,
+    required this.portofolio,
+    this.top,
+  });
   final ScrollController scrollController;
+  final GlobalKey? top;
   final GlobalKey abour;
-  final GlobalKey services;
+  final GlobalKey stacks;
   final GlobalKey testimonial;
   final GlobalKey contact;
   final GlobalKey portofolio;
@@ -21,30 +24,23 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  int selectedIndex = 0;
+  int selectedIndex = -1;
   int hoverIndex = 0;
 
-  List<Map<String, dynamic>> menuItems = [
-    {
-      'name': 'Abour',
-      'position': 600,
-    },
-    {
-      'name': 'Services',
-      'position': 600 + 600,
-    },
-    {
-      'name': 'Portofolio',
-      'position': 600 + 600 + 1000,
-    },
-    {
-      'name': 'Testimonial',
-      'position': 600 + 600 + 1000 + 1000,
-    },
-    {
-      'name': 'Contact',
-      'position': 600 + 600 + 600 + 600 + 1500,
+  @override
+  initState() {
+    super.initState();
+    if (widget.top != null) {
+      menuItems.insert(0, {'name': 'top'});
     }
+  }
+
+  List<Map<String, dynamic>> menuItems = [
+    {'name': 'Abour'},
+    {'name': 'Stacks'},
+    {'name': 'Portofolio'},
+    {'name': 'Testimonial'},
+    {'name': 'Contact'}
   ];
 
   @override
@@ -53,65 +49,62 @@ class _MenuState extends State<Menu> {
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding * 2.5),
       constraints: const BoxConstraints(maxWidth: 1110),
       height: 100,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(10),
-          topRight: Radius.circular(10),
-        ),
-        boxShadow: [kDefaultShadow],
-      ),
+      decoration: widget.top != null
+          ? null
+          : BoxDecoration(
+              color: Colors.white,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
+              boxShadow: [kDefaultShadow],
+            ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children:
-            List.generate(menuItems.length, (index) => buildMenuItem(index)),
+        children: [
+          ...List.generate(
+            menuItems.length,
+            (index) => buildMenuItem(index),
+          )
+        ],
       ),
     );
   }
 
   Widget buildMenuItem(int index) => InkWell(
         onTap: () {
-          setState(() {
-            double y = 0.0;
-            switch (menuItems[index]['name']) {
-              case 'Abour':
-                RenderBox box = widget.abour.currentContext!.findRenderObject()
-                    as RenderBox;
-                Offset position = box.localToGlobal(Offset.zero);
-                y = position.dy;
-                break;
-              case 'Services':
-                RenderBox box = widget.services.currentContext!
-                    .findRenderObject() as RenderBox;
-                Offset position = box.localToGlobal(Offset.zero);
-                y = position.dy;
-                break;
+          setState(
+            () {
+              switch (menuItems[index]['name']) {
+                case 'top':
+                  Scrollable.ensureVisible(widget.top!.currentContext!);
+                  break;
+                case 'Abour':
+                  Scrollable.ensureVisible(widget.abour.currentContext!);
 
-              case 'Portofolio':
-                RenderBox box = widget.portofolio.currentContext!
-                    .findRenderObject() as RenderBox;
-                Offset position = box.localToGlobal(Offset.zero);
-                y = position.dy;
-                break;
+                  break;
+                case 'Stacks':
+                  Scrollable.ensureVisible(widget.stacks.currentContext!);
 
-              case 'Testimonial':
-                RenderBox box = widget.testimonial.currentContext!
-                    .findRenderObject() as RenderBox;
-                Offset position = box.localToGlobal(Offset.zero);
-                y = position.dy;
-                break;
+                  break;
 
-              case 'Contact':
-                RenderBox box = widget.contact.currentContext!
-                    .findRenderObject() as RenderBox;
-                Offset position = box.localToGlobal(Offset.zero);
-                y = position.dy;
-                break;
-            }
-            selectedIndex = index;
-            widget.scrollController.animateTo(y,
-                duration: Duration(milliseconds: 500), curve: Curves.easeIn);
-          });
+                case 'Portofolio':
+                  Scrollable.ensureVisible(widget.portofolio.currentContext!);
+
+                  break;
+
+                case 'Testimonial':
+                  Scrollable.ensureVisible(widget.testimonial.currentContext!);
+
+                  break;
+
+                case 'Contact':
+                  Scrollable.ensureVisible(widget.contact.currentContext!);
+
+                  break;
+              }
+            },
+          );
         },
         onHover: (value) {
           setState(() {

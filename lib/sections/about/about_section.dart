@@ -9,26 +9,27 @@ import 'package:programmer_wonjongseo/sections/about/experience_card.dart';
 class AboutSection extends StatelessWidget {
   const AboutSection({
     super.key,
-    required this.abour,
+    required this.about,
   });
-  final GlobalKey abour;
+  final GlobalKey about;
 
   @override
   Widget build(BuildContext context) {
     String aboutMyStory =
-        'BirthDay: 1997/05/27\nName: Won Jongseo\nUniversity: Sejong University';
+        "👋  Hi there! I'm full stack developer skilled in WEB, and APP 🚀\nI live and work in Japan since 2022.11\nOriginally, I was a backend developer who used Springs or NodeJs.\nBut at present, I have been interested in creating App with Flutter.\nI enjoy drinking, watching Japanese animation. ⛰ 🏄\nI hope to develop every beautiful things✨";
+
     String yearOfExperience = '日本キスコ株式会社 (2022/11/16 ~)';
     String numOfExp = '01';
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
+      key: about,
+      padding: const EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
       constraints: const BoxConstraints(maxWidth: 1110),
       child: Column(
-        key: abour,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              AboutTextWithSign(),
+              const AboutTextWithSign(),
               Expanded(
                 child: AboutSectionText(
                   text: aboutMyStory,

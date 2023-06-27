@@ -12,6 +12,7 @@ class ContactSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: globalKey,
       width: double.infinity,
       decoration: const BoxDecoration(
         color: Color(0xFFE8F0F9),
@@ -20,8 +21,7 @@ class ContactSection extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: Column(
-        key: globalKey,
+      child: const Column(
         children: [
           SizedBox(height: kDefaultPadding * 2.5),
           SectionTitle(
