@@ -19,6 +19,8 @@ dependencies:
   url_launcher: ^6.1.11
   flutter_animation_progress_bar: ^2.3.1
   animate_do: ^3.0.2
+  animated_text_kit: ^4.2.2
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +43,7 @@ flutter:
     - assets/images/projects/toeic/
     - assets/images/projects/youtube/
     - assets/images/projects/pet/
+    - assets/images/icons/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

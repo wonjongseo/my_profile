@@ -7,7 +7,10 @@ import 'package:programmer_wonjongseo/constants.dart';
 import 'package:programmer_wonjongseo/models/RecentWork.dart';
 import 'package:programmer_wonjongseo/sections/recent_work/components/recent_work_card.dart';
 
+import '../../common/common.dart';
 import '../../models/Project.dart';
+import '../../project_detail/project_detail_screen.dart';
+import '../project_detail2/project_detail_screen.dart';
 
 class RecentWorkSection extends StatelessWidget {
   const RecentWorkSection({super.key, required this.globalKey});
@@ -47,20 +50,13 @@ class RecentWorkSection extends StatelessWidget {
               children: List.generate(
                 4,
                 (index) => RecentWorkCard(
-                  index: index,
+                  project: my_projects[index],
                   press: () {
-                    Get.dialog(AlertDialog(
-                      content: SizedBox(
-                        width: size.width * 0.8,
-                        height: size.height * 0.8,
-                        child: Column(
-                          children: [
-                            Text(my_projects[index].title),
-                            Text(my_projects[index].title),
-                          ],
-                        ),
-                      ),
-                    ));
+                    Get.to(
+                        () => ProjectDetailScrenn(
+                              project: my_projects[index],
+                            ),
+                        transition: Transition.leftToRight);
                   },
                 ),
               ),
@@ -72,7 +68,10 @@ class RecentWorkSection extends StatelessWidget {
             child: TextButton(
               child: const Text('더보기..'),
               onPressed: () {
-                Get.to(AllProjectSceen(), transition: Transition.leftToRight);
+                Get.to(
+                  () => const AllProjectSceen(),
+                  transition: Transition.leftToRight,
+                );
               },
             ),
           ),
@@ -94,19 +93,25 @@ class _AllProjectSceenState extends State<AllProjectSceen> {
   late PageController pageController;
   int currentPageIndex = 0;
 
+  void onPageChanged(int newPage) {
+    currentPageIndex = newPage;
+    pageController.jumpToPage(currentPageIndex);
+    setState(() {});
+  }
+
   @override
   void initState() {
     super.initState();
-    pageController = PageController();
+    pageController = PageController(initialPage: currentPageIndex);
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    print('my_projects.length: ${my_projects.length}');
 
     return Scaffold(
         appBar: AppBar(
+          actions: cActions(),
           elevation: 0,
           backgroundColor: const Color(0xFFF7E8FF).withOpacity(0.3),
           shadowColor: const Color(0xFFF7E8FF).withOpacity(0.3),
@@ -127,55 +132,79 @@ class _AllProjectSceenState extends State<AllProjectSceen> {
                 subTitle: 'My Strong Arneas',
                 color: Color(0xFFFFB100),
               ),
-              const SizedBox(height: kDefaultPadding * 1.5),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
+              Expanded(
+                flex: 3,
+                // width: 1110,
+                child: PageView.builder(
+                  controller: pageController,
+                  onPageChanged: onPageChanged,
+                  itemCount: (my_projects.length / 4).ceil(),
+                  itemBuilder: (context, itemBuilderIndex) {
+                    return Center(
+                      child: SizedBox(
+                        width: 1110,
+                        child: Wrap(
+                          spacing: kDefaultPadding,
+                          runSpacing: kDefaultPadding * 2,
+                          children: List.generate(
+                            4,
+                            (index) {
+                              if (index + (itemBuilderIndex * 4) >
+                                  my_projects.length - 1) {
+                                return Container();
+                              }
+
+                              return FadeInLeft(
+                                from: 350,
+                                delay:
+                                    Duration(milliseconds: (1 + index) * 100),
+                                duration:
+                                    Duration(milliseconds: (1 + index) * 500),
+                                child: RecentWorkCard(
+                                  project: my_projects[
+                                      index + (itemBuilderIndex * 4)],
+                                  press: () {
+                                    Get.to(
+                                        () => ProjectDetailScrenn(
+                                              project: my_projects[index +
+                                                  (itemBuilderIndex * 4)],
+                                            ),
+                                        transition: Transition.leftToRight);
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Expanded(
+                flex: 1,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                        (my_projects.length / 4).ceil(),
-                        (myProjectsIndex) => Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 40),
-                              child: SizedBox(
-                                width: 1100,
-                                child: Wrap(
-                                  direction: Axis.horizontal,
-                                  spacing: kDefaultPadding,
-                                  runSpacing: kDefaultPadding * 2,
-                                  children: List.generate(
-                                    4,
-                                    (index) => FadeInLeft(
-                                      delay:
-                                          Duration(milliseconds: index * 200),
-                                      child: RecentWorkCard(
-                                        index: index + (myProjectsIndex + 4),
-                                        press: () {
-                                          Get.dialog(AlertDialog(
-                                            content: SizedBox(
-                                              width: size.width * 0.8,
-                                              height: size.height * 0.8,
-                                              child: Column(
-                                                children: [
-                                                  Text(my_projects[index +
-                                                          (myProjectsIndex + 4)]
-                                                      .title),
-                                                  Text(my_projects[index +
-                                                          (myProjectsIndex + 4)]
-                                                      .title),
-                                                ],
-                                              ),
-                                            ),
-                                          ));
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ))),
-              ),
-              const SizedBox(height: kDefaultPadding * 5),
+                    children:
+                        List.generate((my_projects.length / 4).ceil(), (index) {
+                      return InkWell(
+                        onTap: () {
+                          onPageChanged(index);
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          width: 25,
+                          height: 25,
+                          decoration: BoxDecoration(
+                            color: currentPageIndex == index
+                                ? Colors.black
+                                : Colors.black.withOpacity(0.5),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      );
+                    })),
+              )
             ],
           ),
         ));

@@ -6,6 +6,8 @@ import 'package:programmer_wonjongseo/sections/about/about_section_text.dart';
 import 'package:programmer_wonjongseo/sections/about/about_text_with_sign.dart';
 import 'package:programmer_wonjongseo/sections/about/experience_card.dart';
 
+import '../../models/languages.dart';
+
 class AboutSection extends StatelessWidget {
   const AboutSection({
     super.key,
@@ -37,9 +39,18 @@ class AboutSection extends StatelessWidget {
               ),
               ExperienceCard(numOfExp: numOfExp),
               Expanded(
-                child: AboutSectionText(
-                  text: yearOfExperience,
-                ),
+                child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                    child: Column(
+                      children: [
+                        Text(toTr('programmer_name')),
+                        Text(toTr('programmer_city')),
+                        Text(toTr('programmer_residence')),
+                        Text(toTr('programmer_age')),
+                        Text(toTr('academic_ability')),
+                      ],
+                    )),
               ),
             ],
           ),

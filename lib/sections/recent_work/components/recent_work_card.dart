@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:programmer_wonjongseo/constants.dart';
 import 'package:programmer_wonjongseo/models/Project.dart';
+import 'package:programmer_wonjongseo/models/languages.dart';
 
 class RecentWorkCard extends StatefulWidget {
   const RecentWorkCard({
     super.key,
-    required this.index,
     required this.press,
+    required this.project,
   });
 
-  final int index;
   final VoidCallback press;
-
+  final Project project;
   @override
   State<RecentWorkCard> createState() => _RecentWorkCardState();
 }
@@ -42,7 +42,7 @@ class _RecentWorkCardState extends State<RecentWorkCard> {
             Expanded(
               flex: 1,
               child: Image.asset(
-                my_projects[widget.index].images[0],
+                widget.project.images[0],
                 height: 500,
                 fit: BoxFit.fill,
               ),
@@ -56,10 +56,17 @@ class _RecentWorkCardState extends State<RecentWorkCard> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(my_projects[widget.index].title.toUpperCase()),
+                    // Text(widget.project.description.toUpperCase()),
                     const SizedBox(height: kDefaultPadding / 2),
+                    // Text(
+                    //   widget.project.descriptionToLocale(widget.project.index),
+                    //   style: Theme.of(context)
+                    //       .textTheme
+                    //       .headlineSmall!
+                    //       .copyWith(height: 1.5),
+                    // ),
                     Text(
-                      my_projects[widget.index].title,
+                      widget.project.title,
                       style: Theme.of(context)
                           .textTheme
                           .headlineSmall!

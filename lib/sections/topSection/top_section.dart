@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:programmer_wonjongseo/constants.dart';
+import 'package:programmer_wonjongseo/language_switch_card.dart';
 import 'package:programmer_wonjongseo/sections/topSection/components/logo_blur_box.dart';
 import 'package:programmer_wonjongseo/sections/topSection/components/menu.dart';
 import 'package:programmer_wonjongseo/sections/topSection/components/person_pic.dart';
@@ -47,7 +48,8 @@ class TopSection extends StatelessWidget {
                   abour: abour,
                   testimonial: testimonial,
                   contact: contact),
-            )
+            ),
+            const Positioned(right: 0, child: LanaguesSwitchCard()),
           ],
         ),
       ),

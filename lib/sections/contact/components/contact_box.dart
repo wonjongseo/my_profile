@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:programmer_wonjongseo/components/deault_button.dart';
 import 'package:programmer_wonjongseo/constants.dart';
 import 'package:programmer_wonjongseo/sections/contact/components/socal_card.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactBox extends StatelessWidget {
   const ContactBox({
@@ -29,22 +31,45 @@ class ContactBox extends StatelessWidget {
               alignment: WrapAlignment.spaceBetween,
               children: [
                 SocalCard(
-                  iconSrc: 'assets/images/skype.png',
-                  name: 'TheFlutterWay',
+                  iconSrc: 'assets/images/icons/icons8-instagram.svg',
+                  name: 'Instargram',
+                  color: Colors.pinkAccent,
+                  press: () {
+                    launchUrl(
+                      Uri.parse('https://www.instagram.com/w_jong_s/'),
+                    );
+                  },
+                ),
+                SocalCard(
+                  iconSrc: 'assets/images/icons/icons8-facebook.svg',
+                  name: 'Facebook',
                   color: const Color(0xFFD9FFFC),
-                  press: () {},
+                  press: () {
+                    launchUrl(
+                      Uri.parse('https://www.facebook.com/visionwill'),
+                    );
+                  },
                 ),
                 SocalCard(
-                  iconSrc: 'assets/images/whatsapp.png',
-                  name: 'TheFlutterWay',
+                  iconSrc: 'assets/images/icons/icons8-notion.svg',
+                  name: 'Notion',
                   color: const Color(0xFFE4FFC7),
-                  press: () {},
+                  press: () {
+                    launchUrl(
+                      Uri.parse(
+                          'https://woolly-clownfish-678.notion.site/Web-Developer-431e3c2297054ffda0f704f3fee5b8c9'),
+                    );
+                  },
                 ),
                 SocalCard(
-                  iconSrc: 'assets/images/messanger.png',
-                  name: 'TheFlutterWay',
+                  iconSrc: 'assets/images/icons/icons8-github.svg',
                   color: const Color(0xFFEBF0F9),
-                  press: () {},
+                  name: 'Github',
+                  press: () {
+                    launchUrl(
+                      Uri.parse('https://github.com/wonjongseo'),
+                    );
+                  },
                 )
               ],
             ),
@@ -57,14 +82,37 @@ class ContactBox extends StatelessWidget {
   }
 }
 
-class ContactForm extends StatelessWidget {
+class ContactForm extends StatefulWidget {
   const ContactForm({
     super.key,
   });
 
   @override
+  State<ContactForm> createState() => _ContactFormState();
+}
+
+class _ContactFormState extends State<ContactForm> {
+  late TextEditingController yournameController;
+  late TextEditingController yourAdressController;
+  late TextEditingController yourProjectTypeController;
+  late TextEditingController yourBudgetController;
+  late TextEditingController yourDescritionController;
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    yournameController = TextEditingController();
+    yourAdressController = TextEditingController();
+    yourProjectTypeController = TextEditingController();
+    yourBudgetController = TextEditingController();
+    yourDescritionController = TextEditingController();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Wrap(
         spacing: kDefaultPadding * 2.5,
         runSpacing: kDefaultPadding * 1.5,
@@ -72,6 +120,14 @@ class ContactForm extends StatelessWidget {
           SizedBox(
             width: 470,
             child: TextFormField(
+              enabled: false,
+              controller: yournameController,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter Your Name';
+                }
+                return null;
+              },
               decoration: const InputDecoration(
                 labelText: 'Your Name',
                 hintText: 'Enter Your Name',
@@ -81,6 +137,14 @@ class ContactForm extends StatelessWidget {
           SizedBox(
             width: 470,
             child: TextFormField(
+              enabled: false,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter Your Email Address';
+                }
+                return null;
+              },
+              controller: yourAdressController,
               decoration: const InputDecoration(
                 labelText: 'Your Email Address',
                 hintText: 'Enter Yourt Email Address',
@@ -90,6 +154,14 @@ class ContactForm extends StatelessWidget {
           SizedBox(
             width: 470,
             child: TextFormField(
+              enabled: false,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter Project Type';
+                }
+                return null;
+              },
+              controller: yourProjectTypeController,
               decoration: const InputDecoration(
                 labelText: 'Project Type',
                 hintText: 'Select Project Type',
@@ -99,6 +171,14 @@ class ContactForm extends StatelessWidget {
           SizedBox(
             width: 470,
             child: TextFormField(
+              enabled: false,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter Project Budget';
+                }
+                return null;
+              },
+              controller: yourBudgetController,
               decoration: InputDecoration(
                 labelText: 'Project Budget',
                 hintText: 'Select Project Budget',
@@ -106,9 +186,15 @@ class ContactForm extends StatelessWidget {
             ),
           ),
           SizedBox(
-            // height: 300,
-
             child: TextFormField(
+              enabled: false,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some Description';
+                }
+                return null;
+              },
+              controller: yourDescritionController,
               keyboardType: TextInputType.multiline,
               decoration: const InputDecoration(
                 labelText: 'Description',
@@ -124,7 +210,16 @@ class ContactForm extends StatelessWidget {
               child: DefaultButton(
                   imageSrc: 'assets/images/contact_icon.png',
                   text: 'Contact Me!',
-                  press: () {}),
+                  press: () {
+                    launchUrl(
+                      Uri.parse('mailto:visionwill3322@gmail.com'),
+                    );
+                    // if (_formKey.currentState!.validate()) {
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //     const SnackBar(content: Text('Processing Data')),
+                    //   );
+                    // }
+                  }),
             ),
           )
         ],

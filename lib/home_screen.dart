@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:programmer_wonjongseo/constants.dart';
 import 'package:programmer_wonjongseo/sections/about/about_section.dart';
 import 'package:programmer_wonjongseo/sections/contact/contact_section.dart';
@@ -9,6 +10,7 @@ import 'package:programmer_wonjongseo/sections/recent_work/recent_work.dart';
 import 'package:programmer_wonjongseo/sections/service/service_section.dart';
 import 'package:programmer_wonjongseo/sections/topSection/top_section.dart';
 
+import 'common/common.dart';
 import 'sections/topSection/components/menu.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -27,6 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
   GlobalKey testimonial = GlobalKey();
   GlobalKey contact = GlobalKey();
   bool isShowAppBar = false;
+
+  get locale => null;
   @override
   void initState() {
     super.initState();
@@ -50,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
               centerTitle: true,
               backgroundColor: Colors.transparent,
               elevation: 0,
+              actions: cActions(),
               title: Menu(
                   scrollController: _scrollController,
                   top: top,

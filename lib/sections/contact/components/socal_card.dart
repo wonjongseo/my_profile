@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:programmer_wonjongseo/constants.dart';
 
 class SocalCard extends StatefulWidget {
@@ -42,11 +43,7 @@ class _SocalCardState extends State<SocalCard> {
           ),
           child: Row(
             children: [
-              Image.asset(
-                widget.iconSrc,
-                height: 80,
-                width: 80,
-              ),
+              SvgPicture.asset(widget.iconSrc),
               SizedBox(width: 10),
               Text(widget.name)
             ],

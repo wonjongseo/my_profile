@@ -232,10 +232,8 @@ class Languagues extends Translations {
           'programmer_name': 'Jong seo Won',
           'programmer_city': 'Tokyo',
           'programmer_residence': 'Japan',
-
           'programmer_age': '1997/05/17',
           'academic_ability': 'Sejong University\n(Computer Engineering)',
-
           'page_title': 'Concentrate on this Moments.',
 
           // ----------- 0 ------------
