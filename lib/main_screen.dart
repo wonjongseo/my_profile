@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:programmer_wonjongseo/responsive.dart';
 
+import 'common/common.dart';
+
 class MainScreen extends StatelessWidget {
   MainScreen({super.key, required this.body, this.isHome});
   bool? isHome;
@@ -15,7 +17,7 @@ class MainScreen extends StatelessWidget {
           ? AppBar(
               // actions: [LanaguesSwitchCard()],
               //  backgroundColor: bgColor,
-              elevation: isHome == true ? 1 : 0,
+              elevation: isHome == true ? 1 : 0, actions: cActions(),
               leading: isHome != null
                   ? Builder(
                       builder: (context) => IconButton(

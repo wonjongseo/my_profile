@@ -6,6 +6,11 @@ class Languagues extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'ko_KR': {
+          'name': '이름',
+          'city': '도시',
+          'residence': '거주지',
+          'age': '나이',
+          'ility': '학력',
           'download_cv': 'CV의 언어를 선택하세요',
           'description': '설명',
           'corporation_project': '회사 프로젝트',
@@ -108,6 +113,11 @@ class Languagues extends Translations {
 
         ////////////////////////////////////////////////////
         'ja_JP': {
+          'name': '名前',
+          'city': '都市',
+          'residence': '住所',
+          'age': '連例',
+          'ility': '学歴',
           'download_cv': 'CV 言語を選択してください',
           'description': '説明',
           'corporation_project': '`会社のプロジェクト',
@@ -213,6 +223,8 @@ class Languagues extends Translations {
         /////////////////////////////////////////////////////
 
         'en_US': {
+          'name': 'name',
+
           'download_cv': 'Select a language for CV.',
           'description': 'description',
           'corporation_project': '`Corporation  Project',

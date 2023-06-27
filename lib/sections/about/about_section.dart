@@ -44,11 +44,85 @@ class AboutSection extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                     child: Column(
                       children: [
-                        Text(toTr('programmer_name')),
-                        Text(toTr('programmer_city')),
-                        Text(toTr('programmer_residence')),
-                        Text(toTr('programmer_age')),
-                        Text(toTr('academic_ability')),
+                        const SizedBox(height: 10),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                  child: Text(
+                                toTr('name'),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22,
+                                ),
+                              )),
+                              const SizedBox(width: 20),
+                              Expanded(child: Text(toTr('programmer_name')))
+                            ]),
+                        const SizedBox(height: 10),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                  child: Text(
+                                toTr('city'),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22,
+                                ),
+                              )),
+                              const SizedBox(width: 20),
+                              Expanded(child: Text(toTr('programmer_city')))
+                            ]),
+                        const SizedBox(height: 10),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                  child: Text(
+                                toTr('residence'),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22,
+                                ),
+                              )),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                  child: Text(toTr('programmer_residence')))
+                            ]),
+                        const SizedBox(height: 10),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  toTr('age'),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                  child: Text(
+                                toTr('programmer_age'),
+                                
+                              ))
+                            ]),
+                        const SizedBox(height: 10),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(child: Text(toTr('ility'),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22,
+                                ),
+                              )),
+                              const SizedBox(width: 20),
+                              Expanded(child: Text(toTr('academic_ability'),))
+                            ]),
                       ],
                     )),
               ),
