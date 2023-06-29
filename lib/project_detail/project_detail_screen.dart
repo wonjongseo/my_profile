@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
+import 'package:programmer_wonjongseo/language_switch_card.dart';
 
 import '../common/common.dart';
 import '../main_screen.dart';
@@ -37,54 +38,59 @@ class _ProjectDetailScrennState extends State<ProjectDetailScrenn> {
 
   @override
   Widget build(BuildContext context) {
-    return MainScreen(
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: const Color(0x000079ff).withOpacity(0.3),
+        title: Text(
+          widget.project.title,
+          style: sectionTitleStyle(context).copyWith(
+            fontSize: 30,
+          ),
+        ),
+        actions: [const LanaguesSwitchCard()],
+        centerTitle: true,
+      ),
       body: Responsive.isDesktop(context)
           ? SizedBox(
-              width: MediaQuery.of(context).size.width * 0.7 - 100,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20 * 2),
-                    child: Text(
-                      widget.project.title,
-                      style: sectionTitleStyle(context).copyWith(
-                        fontSize: 30,
-                      ),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: const Color(0x000079ff).withOpacity(0.3),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          flex: 5,
+                          child: ProjectImageSlider(
+                            carouselController: carouselController,
+                            setState: changeIndexOfSlider,
+                            project: widget.project,
+                            currentIndex: currentIndex,
+                          ),
+                        ),
+                        const SizedBox(width: 20 * 2),
+                        Expanded(
+                          flex: 5,
+                          child: ProjectDetailCard(
+                            project: widget.project,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  const Spacer(flex: 1),
-                  const SizedBox(height: 20 * 2),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ProjectImageSlider(
-                          carouselController: carouselController,
-                          setState: changeIndexOfSlider,
-                          project: widget.project,
-                          currentIndex: currentIndex),
-                      const SizedBox(width: 20 * 2),
-                      ProjectDetailCard(
-                        project: widget.project,
-                        width: MediaQuery.of(context).size.width * 0.2,
-                      )
-                    ],
-                  ),
-                  const Spacer(flex: 1),
-                ],
+                  ],
+                ),
               ),
             )
           : SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.project.title,
-                    style: sectionTitleStyle(context).copyWith(
-                      fontSize: 30,
-                    ),
-                  ),
-                  const SizedBox(height: 20 * 2),
                   ProjectImageSlider(
                       carouselController: carouselController,
                       setState: changeIndexOfSlider,

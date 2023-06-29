@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:programmer_wonjongseo/common/animated_counter.dart';
 import 'package:programmer_wonjongseo/constants.dart';
+import 'package:programmer_wonjongseo/corporation/high_light/high_light.dart';
+import 'package:programmer_wonjongseo/models/CorporationProjects.dart';
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({
@@ -7,10 +10,12 @@ class SectionTitle extends StatelessWidget {
     required this.title,
     required this.subTitle,
     required this.color,
+    this.projectCount,
   });
 
   final String title, subTitle;
   final Color color;
+  final int? projectCount;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,12 +45,25 @@ class SectionTitle extends StatelessWidget {
                   color: kTextColor,
                 ),
               ),
-              Text(
-                title,
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium!
-                    .copyWith(fontWeight: FontWeight.bold, color: Colors.black),
+              Row(
+                children: [
+                  Text(
+                    title,
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  ),
+                  if (projectCount != null)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: HeighLight(
+                        counter: AnimatedCounter(
+                          value: projectCount!,
+                          text: "+",
+                        ),
+                        label: "",
+                      ),
+                    ),
+                ],
               )
             ],
           )

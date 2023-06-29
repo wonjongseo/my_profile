@@ -9,6 +9,7 @@ class HireMeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Container();
     return Container(
       padding: const EdgeInsets.all(kDefaultPadding * 2),
       constraints: const BoxConstraints(maxWidth: 1110),

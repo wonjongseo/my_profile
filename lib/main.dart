@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:programmer_wonjongseo/constants.dart';
 import 'package:programmer_wonjongseo/home_screen.dart';
 
+import 'controller/key_controller.dart';
 import 'models/languages.dart';
 
 void main() {
@@ -16,13 +17,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(KeyController());
     return GetMaterialApp(
       scrollBehavior: GetPlatform.isDesktop
           ? const MaterialScrollBehavior()
               .copyWith(dragDevices: {PointerDeviceKind.mouse})
           : null,
       translations: Languagues(),
-      fallbackLocale: const Locale('en', 'US'),
+      fallbackLocale: const Locale('ja', 'JP'),
       locale: Get.deviceLocale,
       debugShowCheckedModeBanner: false,
       title: 'Wonjongseo Profile',
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
       ).copyWith(
         inputDecorationTheme: kDefaultInputDecorationTheme,
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }

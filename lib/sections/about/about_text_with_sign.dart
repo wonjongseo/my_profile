@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:programmer_wonjongseo/constants.dart';
+import 'package:programmer_wonjongseo/responsive.dart';
 
 class AboutTextWithSign extends StatelessWidget {
   const AboutTextWithSign({
@@ -12,14 +13,15 @@ class AboutTextWithSign extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'About \nMe!',
-          style: Theme.of(context)
-              .textTheme
-              .displayMedium!
-              .copyWith(fontWeight: FontWeight.bold, color: Colors.black),
+          'About Me!',
+          style: TextStyle(
+            fontSize: ResponsiveSize.sceenHeight10(context) * 2,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
         ),
         const SizedBox(height: kDefaultPadding * 1),
-        Image.asset('assets/images/sign.png', fit: BoxFit.cover),
+        // Image.asset('assets/images/sign.png', fit: BoxFit.cover),
       ],
     );
   }

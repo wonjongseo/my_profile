@@ -1,8 +1,18 @@
 import 'package:get/get.dart';
+import 'package:programmer_wonjongseo/common/theme.dart';
 
 String toTr(String word) => word.tr;
 
 class Languagues extends Translations {
+  static String getFontFamily() {
+    String locale = Get.locale!.toLanguageTag();
+    return locale.contains('ko')
+        ? AppFonts.koreanFont
+        : locale.contains('en')
+            ? AppFonts.englishFont
+            : AppFonts.japaneseFont;
+  }
+
   @override
   Map<String, Map<String, String>> get keys => {
         'ko_KR': {
@@ -10,12 +20,13 @@ class Languagues extends Translations {
           'city': '도시',
           'residence': '거주지',
           'age': '나이',
-          'ility': '학력',
+          'ablity': '학력',
           'download_cv': 'CV의 언어를 선택하세요',
           'description': '설명',
           'corporation_project': '회사 프로젝트',
           'read_more': '더보기',
-
+          'aboutMyStory':
+              '👋 안녕! 내이름은 원종서야 🚀\n내 포트폴리오 사이트에 온 것에 환영해 ✨\n2022년 11월부터 도쿄에서 일하면서 일본을 즐기며 살고있어 \n원래는 백엔드 개발자가 되기 위해서 백엔드 위주로 개발해 왔는데, 요즘에는 플러터에 빠져서 앱 개발도 열심히 공부하고 있어\n취미는 술 먹으면서 놀기, 애니 보기, 춤추기, 코딩하기, 여행 다니기 등등 있어⛰ 🏄\n그럼 잘 부탁해!',
           'project_completion_report': '프로젝트 완료 보고서',
           'author': '작성자 (계급 및 성명)',
           'date_writed': '작성 일자',
@@ -29,10 +40,10 @@ class Languagues extends Translations {
           'point_me_felt': '느낀점',
 
           'programmer_name': '원종서',
-          'programmer_city': '도쿄',
-          'programmer_residence': '일본',
+
+          'programmer_residence': '일본 (도쿄)',
           'programmer_age': '1997년05월17일',
-          'academic_ability': '세종대학교\n(컴퓨터공학과)',
+          'academic_abablity': '세종대학교\n(컴퓨터공학과)',
 
           'page_title': '지금 이순간에 최선을 다하자.',
 
@@ -113,11 +124,21 @@ class Languagues extends Translations {
 
         ////////////////////////////////////////////////////
         'ja_JP': {
+          'introduce': '明日よりもっと成長しようと努力し続けているフルスタック開発者です。',
+          'merit': '社交的で、前向きな性格を持っています。',
+          'aboutMyStory':
+              '👋 こんにちは! 俺の名前はウォンジョンソ 🚀\n俺のサイトに来ることをようこそ！ ✨\n２０２２年１１月から東京に働きながら日本の生活を楽しみながら住んでいる！\n元々はバックエンド開発者がなりたくて、主にバックエンドについて勉強してきたんだけど、最近はFlutterに興味深いになっちゃってアプリの開発勉強も頑張り続いている！\n趣味といえばお酒、アニメ、ヒップホップダンス、旅行等々あるよん！⛰ 🏄\じゃこらからよろしくね！',
           'name': '名前',
           'city': '都市',
           'residence': '住所',
-          'age': '連例',
-          'ility': '学歴',
+          'age': '年齢',
+          'ablity': '学歴',
+
+          'about': '自己紹介',
+          'skill': '技術',
+          'myProject': 'プロジェクト',
+          'contact': '連絡',
+
           'download_cv': 'CV 言語を選択してください',
           'description': '説明',
           'corporation_project': '`会社のプロジェクト',
@@ -136,10 +157,10 @@ class Languagues extends Translations {
           'point_me_felt': '感じた点',
 
           'programmer_name': 'ウォンジョンソ',
-          'programmer_city': '東京',
-          'programmer_residence': '日本',
+
+          'programmer_residence': '日本 (東京)',
           'programmer_age': '1997年05月17日',
-          'academic_ability': '世宗大学校\n(コンピューター工学科)',
+          'academic_abablity': '世宗大学校\n(コンピューター工学科)',
 
           'page_title': '今この瞬間に集中しよう.',
 
@@ -241,11 +262,14 @@ class Languagues extends Translations {
           'problems_future_countermeasures': 'Problems\nFuture Countermeasures',
           'point_me_felt': 'Point me felt',
 
+          'aboutMyStory':
+              "👋  Hi there! I'm full stack developer skilled in WEB, and APP 🚀\nI live and work in Japan since 2022.11\nOriginally, I was a backend developer who used Springs or NodeJs.\nBut at present, I have been interested in creating App with Flutter.\nI enjoy drinking, watching Japanese animation. ⛰ 🏄\nI hope to develop every beautiful things✨",
+
           'programmer_name': 'Jong seo Won',
-          'programmer_city': 'Tokyo',
-          'programmer_residence': 'Japan',
+
+          'programmer_residence': 'Japan (Tokyo)',
           'programmer_age': '1997/05/17',
-          'academic_ability': 'Sejong University\n(Computer Engineering)',
+          'academic_abablity': 'Sejong University\n(Computer Engineering)',
           'page_title': 'Concentrate on this Moments.',
 
           // ----------- 0 ------------

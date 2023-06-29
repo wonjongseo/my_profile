@@ -1,93 +1,88 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:programmer_wonjongseo/components/deault_button.dart';
+import 'package:programmer_wonjongseo/components/my_outlined_button.dart';
+import 'package:programmer_wonjongseo/components/section_title.dart';
 import 'package:programmer_wonjongseo/constants.dart';
+import 'package:programmer_wonjongseo/controller/key_controller.dart';
+import 'package:programmer_wonjongseo/main_screen.dart';
+import 'package:programmer_wonjongseo/my_socail_links.dart';
 import 'package:programmer_wonjongseo/sections/about/about_section.dart';
 import 'package:programmer_wonjongseo/sections/contact/contact_section.dart';
 import 'package:programmer_wonjongseo/sections/feedback/feedback_section.dart';
-import 'package:programmer_wonjongseo/sections/recent_work/recent_work.dart';
-import 'package:programmer_wonjongseo/sections/service/service_section.dart';
+import 'package:programmer_wonjongseo/sections/recent_work/my_project_section.dart';
+import 'package:programmer_wonjongseo/sections/service/skill_section.dart';
 import 'package:programmer_wonjongseo/sections/topSection/top_section.dart';
 
-import 'common/common.dart';
-import 'sections/topSection/components/menu.dart';
+import 'corporation/corporation_projects.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late ScrollController _scrollController;
-  GlobalKey top = GlobalKey();
-  GlobalKey about = GlobalKey();
-  GlobalKey stacksKey = GlobalKey();
-  GlobalKey portofolio = GlobalKey();
-  GlobalKey testimonial = GlobalKey();
-  GlobalKey contact = GlobalKey();
+  KeyController keyController = KeyController.to;
   bool isShowAppBar = false;
 
   get locale => null;
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController();
-    _scrollController.addListener(() {
-      if (_scrollController.offset >= 900) {
-        isShowAppBar = true;
-        setState(() {});
-      } else if (_scrollController.offset < 900) {
-        isShowAppBar = false;
-        setState(() {});
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: isShowAppBar
-          ? AppBar(
-              centerTitle: true,
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              actions: cActions(),
-              title: Menu(
-                  scrollController: _scrollController,
-                  top: top,
-                  stacks: stacksKey,
-                  portofolio: portofolio,
-                  abour: about,
-                  testimonial: testimonial,
-                  contact: contact),
-            )
-          : null,
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        child: Column(
-          key: top,
-          children: [
-            TopSection(
-              scrollController: _scrollController,
-              services: stacksKey,
-              portofolio: portofolio,
-              abour: about,
-              testimonial: testimonial,
-              contact: contact,
-            ), // 900
-            AboutSection(about: about), //
-            StackSection(globalKey: stacksKey),
-            RecentWorkSection(globalKey: portofolio),
-            FeedbackSection(globalKey: testimonial),
-            const SizedBox(height: kDefaultPadding),
-            ContactSection(globalKey: contact),
-            const SizedBox(height: 500)
-          ],
+    return MainScreen(
+      isHome: true,
+      body: GetBuilder<KeyController>(builder: (context2) {
+        Size size = MediaQuery.of(context).size;
+        print('size.width: ${size.width}');
+        print('size.height: ${size.height}');
+
+        return SingleChildScrollView(
+          controller: keyController.scrollController,
+          child: Column(
+            key: keyController.topKey,
+            children: [
+              TopSection(
+                  scrollController: keyController.scrollController), // 900
+              AboutSection(about: keyController.aboutKey), //
+              // const SocailSection(),
+              // SkillSection(globalKey: keyController.stacksKeyKey),
+
+              // MyProjectSection(globalKey: keyController.myProjectKey),
+              // CompanyProjectSection(globalKey: keyController.testimonialKey),
+              // const SizedBox(height: kDefaultPadding),
+              // ContactSection(globalKey: keyController.contactKey),
+              // const SizedBox(height: 500)
+            ],
+          ),
+        );
+      }),
+    );
+  }
+}
+
+class SocailSection extends StatelessWidget {
+  const SocailSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: kDefaultPadding * 6),
+      padding: const EdgeInsets.only(top: kDefaultPadding * 2),
+      width: double.infinity,
+      decoration:
+          BoxDecoration(color: const Color(0x00e4a5ff).withOpacity(0.3)),
+      child: Column(children: [
+        const SectionTitle(
+          subTitle: 'Follow me~',
+          title: 'My Social NetWork',
+          color: Color(0xFFFF0000),
         ),
-      ),
+        const SizedBox(height: kDefaultPadding * 2),
+        const MySocialLinks(),
+        const SizedBox(height: kDefaultPadding * 6),
+      ]),
     );
   }
 }

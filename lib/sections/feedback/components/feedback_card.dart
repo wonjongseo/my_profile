@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:programmer_wonjongseo/common/dialog.dart';
 import 'package:programmer_wonjongseo/constants.dart';
+import 'package:programmer_wonjongseo/corporation/report/report_screen.dart';
+import 'package:programmer_wonjongseo/models/CorporationProjects.dart';
 import 'package:programmer_wonjongseo/models/Feedback.dart';
 
 class FeedbackCard extends StatefulWidget {
   const FeedbackCard({
     super.key,
-    required this.index,
     required this.press,
+    required this.corporationProject,
   });
-  final int index;
   final VoidCallback press;
+  final Corporation corporationProject;
   @override
   State<FeedbackCard> createState() => _FeedbackCardState();
 }
@@ -21,7 +25,12 @@ class _FeedbackCardState extends State<FeedbackCard> {
   Widget build(BuildContext context) {
     return InkWell(
       hoverColor: Colors.transparent,
-      onTap: widget.press,
+      onTap: () {
+        openProjectDialog(context, widget.corporationProject,
+            child: ReportSceen(
+              corporation: widget.corporationProject,
+            ));
+      },
       onHover: (value) {
         setState(() {
           isHover = value;
@@ -35,7 +44,7 @@ class _FeedbackCardState extends State<FeedbackCard> {
         height: 350,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: feedbacks[widget.index].color,
+          color: widget.corporationProject.color,
           boxShadow: [if (isHover) kDefaultCardShadow],
         ),
         child: Column(
@@ -51,11 +60,11 @@ class _FeedbackCardState extends State<FeedbackCard> {
                     border: Border.all(color: Colors.white, width: 10),
                     boxShadow: [if (!isHover) kDefaultCardShadow],
                     image: DecorationImage(
-                        image: AssetImage(feedbacks[widget.index].userPic))),
+                        image: AssetImage(widget.corporationProject.userPic))),
               ),
             ),
             Text(
-              feedbacks[widget.index].review,
+              widget.corporationProject.name,
               style: const TextStyle(
                 color: kTextColor,
                 fontSize: 18,
@@ -65,10 +74,15 @@ class _FeedbackCardState extends State<FeedbackCard> {
               ),
             ),
             const SizedBox(height: kDefaultPadding * 2),
-            const Text(
-              'Ronald Thompson',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            )
+            Text(
+              widget.corporationProject.source,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: kDefaultPadding),
+            Text(
+              widget.corporationProject.description,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
           ],
         ),
       ),

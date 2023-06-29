@@ -7,15 +7,12 @@ import '../../models/Project.dart';
 import 'homepage_lisk_card.dart';
 
 class ProjectDetailCard extends StatelessWidget {
-  const ProjectDetailCard({Key? key, required this.project, this.width})
-      : super(key: key);
-  final double? width;
+  const ProjectDetailCard({Key? key, required this.project}) : super(key: key);
   final Project project;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

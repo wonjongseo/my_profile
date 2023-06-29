@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:programmer_wonjongseo/components/section_title.dart';
 import 'package:programmer_wonjongseo/constants.dart';
 import 'package:programmer_wonjongseo/sections/contact/components/contact_box.dart';
-import 'package:programmer_wonjongseo/sections/contact/components/socal_card.dart';
+import 'package:programmer_wonjongseo/socal_card.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key, required this.globalKey});
@@ -14,12 +14,8 @@ class ContactSection extends StatelessWidget {
     return Container(
       key: globalKey,
       width: double.infinity,
-      decoration: const BoxDecoration(
-        color: Color(0xFFE8F0F9),
-        image: DecorationImage(
-          image: AssetImage('assets/images/bg_img_2.png'),
-          fit: BoxFit.cover,
-        ),
+      decoration: BoxDecoration(
+        color: const Color(0x00DFA2).withOpacity(0.3),
       ),
       child: const Column(
         children: [

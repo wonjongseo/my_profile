@@ -1,5 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:programmer_wonjongseo/models/languages.dart';
+import 'package:programmer_wonjongseo/responsive.dart';
 
 import '../../constants.dart';
 
@@ -15,12 +17,12 @@ class AboutSectionText extends StatelessWidget {
       child: AnimatedTextKit(
         repeatForever: false,
         animatedTexts: [
-          TyperAnimatedText(text)
-          //  Text(
-          //   text,
-          //   style: const TextStyle(
-          //       fontWeight: FontWeight.w500, color: kTextColor, height: 2),
-          // )
+          TyperAnimatedText(toTr(text),
+              textStyle: TextStyle(
+                // fontFamily: ,
+                fontWeight: FontWeight.bold,
+                fontSize: ResponsiveSize.sceenHeight10(context) * 1.8,
+              ))
         ],
       ),
     );

@@ -27,17 +27,47 @@ class Responsive extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
     if (_size.width >= 1024) {
-      print('desktop');
       return desktop;
     } else if (_size.width >= 700 && tablet != null) {
-      print('tablet');
       return tablet!;
     } else if (_size.width >= 450 && mobileLarge != null) {
-      print('mobileLarge');
       return mobileLarge!;
     } else {
-      print('mobile');
       return mobile;
     }
   }
+}
+
+class ResponsiveSize {
+  //flutter: ResponsiveSize.sceenHeight: 1147.0
+  static double sceenHeight = Get.size.height;
+
+  static double sceenHeight100(BuildContext context) =>
+      MediaQuery.of(context).size.height / 11.47;
+
+  static double sceenHeight900(BuildContext context) =>
+      MediaQuery.of(context).size.height / 1.28;
+
+  static double sceenHeight700(BuildContext context) =>
+      MediaQuery.of(context).size.height / 1.638;
+
+  static double sceenHeight250(BuildContext context) =>
+      MediaQuery.of(context).size.height / 4.588;
+
+  static double sceenHeight10(BuildContext context) =>
+      MediaQuery.of(context).size.height / 114.7;
+
+  static double sceenWidth = Get.size.width;
+  // flutter: ResponsiveSize.sceenWidth: 1920.0
+
+  static double sceenWidth900(BuildContext context) =>
+      MediaQuery.of(context).size.width / 1.28;
+  static double sceenWidth250(BuildContext context) =>
+      MediaQuery.of(context).size.width / 7.68;
+
+  static double sceenWidth100(BuildContext context) =>
+      MediaQuery.of(context).size.width / 19.20;
+
+  static double sceenWidth10(BuildContext context) =>
+      MediaQuery.of(context).size.width / 192;
 }
