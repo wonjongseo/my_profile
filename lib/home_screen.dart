@@ -34,10 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return MainScreen(
       isHome: true,
       body: GetBuilder<KeyController>(builder: (context2) {
-        Size size = MediaQuery.of(context).size;
-        print('size.width: ${size.width}');
-        print('size.height: ${size.height}');
-
         return SingleChildScrollView(
           controller: keyController.scrollController,
           child: Column(
@@ -46,14 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
               TopSection(
                   scrollController: keyController.scrollController), // 900
               AboutSection(about: keyController.aboutKey), //
-              // const SocailSection(),
-              // SkillSection(globalKey: keyController.stacksKeyKey),
+              const SocailSection(),
+              SkillSection(globalKey: keyController.stacksKeyKey),
 
-              // MyProjectSection(globalKey: keyController.myProjectKey),
-              // CompanyProjectSection(globalKey: keyController.testimonialKey),
-              // const SizedBox(height: kDefaultPadding),
-              // ContactSection(globalKey: keyController.contactKey),
-              // const SizedBox(height: 500)
+              MyProjectSection(globalKey: keyController.myProjectKey),
+              CompanyProjectSection(globalKey: keyController.testimonialKey),
+              const SizedBox(height: kDefaultPadding),
+              ContactSection(globalKey: keyController.contactKey),
+              const SizedBox(height: 500)
             ],
           ),
         );

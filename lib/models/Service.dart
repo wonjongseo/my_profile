@@ -34,7 +34,7 @@ List<Service> services = [
     color: const Color(0xFFD9FFFC),
     language: [
       SLanguage(
-        name: 'Spring frame work',
+        name: 'Spring frame work', // ok
         iconPath: '$imageUrl/icons8-spring-48.png',
       ),
       SLanguage(
@@ -43,7 +43,7 @@ List<Service> services = [
       ),
       SLanguage(
         name: 'NodeJs',
-        iconPath: '$imageUrl/icons8-nodejs-48.png',
+        iconPath: '$imageUrl/icons8-nodejs-48.png', //ok
       ),
       SLanguage(
         name: 'GraphQL',
@@ -78,27 +78,27 @@ List<Service> services = [
     color: const Color(0xFFE4FFC7),
     language: [
       SLanguage(
-        name: 'Flutter',
+        name: 'Flutter', //ok
         iconPath: '$imageUrl/icons8-flutter-48.png',
       ),
       SLanguage(
-        name: 'Dart',
+        name: 'Dart', //ok
         iconPath: '$imageUrl/icons8-dart-48.png',
       ),
       SLanguage(
-        name: 'React',
-        iconPath: '$imageUrl/icons8-react-40.png',
+        name: 'React', //ok
+        iconPath: '$imageUrl/icons8-react-40.png', // ok
       ),
       SLanguage(
-        name: 'React Native',
+        name: 'React Native', // ok
         iconPath: '$imageUrl/icons8-react-native-48.png',
       ),
       SLanguage(
-        name: 'Vue',
+        name: 'Vue', // ok
         iconPath: '$imageUrl/icons8-vue-js-48.png',
       ),
       SLanguage(
-        name: 'Java Script',
+        name: 'Java Script', //ok
         iconPath: '$imageUrl/icons8-javascript-48.png',
       ),
       SLanguage(
@@ -106,10 +106,12 @@ List<Service> services = [
         iconPath: '$imageUrl/icons8-typescript-48.png',
       ),
       SLanguage(
+        //ok
         name: 'HTML',
         iconPath: '$imageUrl/icons8-html-48.png',
       ),
       SLanguage(
+        //ok
         name: 'CSS',
         iconPath: '$imageUrl/icons8-css-48.png',
       ),
@@ -126,15 +128,15 @@ List<Service> services = [
     color: const Color(0xFFFFE0E0),
     language: [
       SLanguage(
-        name: 'Java',
+        name: 'Java', //ok
         iconPath: '$imageUrl/icons8-java-48.png',
       ),
       SLanguage(
-        name: 'C',
+        name: 'C', // ok
         iconPath: '$imageUrl/icons8-cプログラミング-48.png',
       ),
       SLanguage(
-        name: 'C++',
+        name: 'C++', // ok
         iconPath: '$imageUrl/icons8-c++-48.png',
       ),
       SLanguage(
